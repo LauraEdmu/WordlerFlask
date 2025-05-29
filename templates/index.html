@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle Glob</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌑 Wordle Glob</h1>
+        <form method="post">
+            <label>Glob Pattern:</label>
+            <input name="pattern" type="text" value="{{ input_data.pattern }}" required placeholder="e.g. t??k*">
+            <label>Blacklist Letters:</label>
+            <input name="blacklist" type="text" value="{{ input_data.blacklist }}" placeholder="e.g. zxy">
+            <label>Yellow Letters (must be included):</label>
+            <input name="yellow" type="text" value="{{ input_data.yellow }}" placeholder="e.g. rls">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if matches %}
+        <div class="results">
+            <h2>Matches: {{ matches|length }}</h2>
+            <p>{{ matches | join(", ") }}</p>
+
+            {% if matches_no_repeat %}
+            <h3>No Repeating Letters ({{ matches_no_repeat|length }})</h3>
+            <p>{{ matches_no_repeat | join(", ") }}</p>
+            {% endif %}
+
+            {% if matches_with_repeat %}
+            <h3>With Repeating Letters ({{ matches_with_repeat|length }})</h3>
+            <p>{{ matches_with_repeat | join(", ") }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
