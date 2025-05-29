@@ -35,6 +35,27 @@
         </div>
         {% endif %}
     </div>
+<a href="#" onclick="goToPort80()" style="
+  position: fixed;
+  top: 0.75em;
+  right: 1em;
+  font-size: 0.95em;
+  background: #2a2a2a;
+  color: #ddd;
+  padding: 6px 12px;
+  border-radius: 999px;
+  opacity: 0.3;
+  text-decoration: none;
+  transition: opacity 0.3s;
+"
+onmouseover="this.style.opacity='0.8'"
+onmouseout="this.style.opacity='0.3'">⇄ Linkshare</a>
+    <script>
+	function goToPort80() {
+	const host = window.location.hostname;
+	const protocol = window.location.protocol;
+	window.location.href = `${protocol}//${host}:80`;}
+    </script>
 </body>
 </html>
 
